@@ -1,21 +1,19 @@
+//imports 
 const argv = require('./config/yargs').argv;
 const tareas = require('./controlador/tareas-por-hacer');
 const colors = require('colors');
 
+//obtener comando de consola
 let comando = argv._[0];
 
+//control de comandos
 switch (comando) {
     case 'crear':
         let tarea = tareas.crear(argv.descripcion);
         console.log(tarea);
         break;
     case 'listar':
-        let listado = tareas.getLista();
-        for (let tarea of listado) {
-            console.log("======= POR HACER =====".green);
-            console.log(tarea.descripcion);
-            console.log("Estado: ", tarea.completado);
-        }
+        tareas.listado(argv.opcion);
         break;
     case 'actualizar':
         let actualizado = tareas.actualizar(argv.descripcion, argv.completado);

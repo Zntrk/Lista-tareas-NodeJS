@@ -1,3 +1,4 @@
+//bloque de parametros para comandos
 const descripcion = {
     demand: true,
     alias: 'd',
@@ -6,10 +7,17 @@ const descripcion = {
 
 const completado = {
     default: true,
-    alias: 'c',
+    alias: 't',
     desc: "Marca como completada o pendiente la tarea"
 };
 
+const opcion = {
+    default: null,
+    alias: 'c',
+    desc: "Lista segun tareas completadas con True, o incompletas con False "   
+};
+
+//bloque de comandos 
 const argv = require('yargs')
     .command('crear', 'Crear una tarea', {
         descripcion
@@ -20,6 +28,9 @@ const argv = require('yargs')
     })
     .command('borrar', 'Elimina una tarea', {
         descripcion
+    })
+    .command('listar', 'Muestra las tareas en consola', {
+        opcion
     })
     .help()
     .argv;
